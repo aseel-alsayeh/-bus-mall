@@ -1,5 +1,8 @@
 'use strict'
+let attempts=0;
+let maxAttempts =5;
 let busMall =[] ;
+
 function BusMallImg (imgName) {
     this.imgName = imgName.split('.')[0];
     this.source='i/' + imgName;
@@ -26,7 +29,7 @@ let twoEl = document.getElementById('middleImg');
 let threeEl = document.getElementById('rightImg');
 
 let leftImgIn;
-let middleImgIn
+let middleImgIn;
 let rightImgIn;
 
 
@@ -61,24 +64,64 @@ switch(rightImgIn){
 
 }
 
-
-
-
-
-
 oneEl.setAttribute('src', busMall[leftImgIn].source)
+oneEl.setAttribute('title', busMall[leftImgIn].source);
 busMall[leftImgIn].views++;
+
 twoEl.setAttribute('src', busMall[middleImgIn].source)
+twoEl.setAttribute('title', busMall[middleImgIn].source);
 busMall[middleImgIn].views++;
 
 threeEl.setAttribute('src', busMall[rightImgIn].source)
+threeEl.setAttribute('title', busMall[rightImgIn].source);
 busMall[rightImgIn].views++;
 }
 
-randomImg();
 renderImages();
 
 
+oneEl.addEventListener('click', handelClicks);
+twoEl.addEventListener('click', handelClicks);
+threeEl.addEventListener('click', handelClicks);
+
+function handelClicks(event){
+    attempts++;
+    if (attempts <= maxAttempts) {
+        console.log(event.target.id)
+        if (event.target.id === 'leftImg') {
+            busMall[leftImgIn].clicks++;
+        } else if (event.target.id === 'middleImg') {
+            busMall[middleImgIn].clicks++;
+            
+        }else if (event.target.id === 'rightImg') {
+            busMall[rightImgIn].clicks++;
+        }
+        
+        renderImages();
+    } else {
+    
+let ulEl = document.getElementById('results');
+
+let liEl;
+
+let buttonEl = document.getElementById('button');
+buttonEl.addEventListener('click', results);
+
+    function results(event){
+        event.preventDefault();
+        for (let i = 0; i < busMall.length; i++) {
+            liEl = document.createElement('li');
+            ulEl.appendChild(liEl);
+            liEl.textContent = `${busMall[i].imgName} has ${busMall[i].views} views and has ${busMall[i].clicks} clicks.`}
+        
+    }
 
 
 
+        oneEl.removeEventListener('click', handelClicks);
+        twoEl.removeEventListener('click', handelClicks);
+        threeEl.removeEventListener('click', handelClicks);
+    }
+
+
+}
