@@ -2,11 +2,14 @@
 let attempts=0;
 let maxAttempts =5;
 let busMall =[] ;
+<<<<<<< HEAD
 let imgesName =[];
 let c = [];
 let v =[];
 let itterationArray =[];
 
+=======
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
 
 function BusMallImg (imgName) {
     this.imgName = imgName.split('.')[0];
@@ -14,7 +17,11 @@ function BusMallImg (imgName) {
     this.clicks=0;
     this.views=0;
     busMall.push(this);
+<<<<<<< HEAD
     imgesName.push(this.imgName)
+=======
+
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
 
 }
 
@@ -43,6 +50,7 @@ leftImgIn=randomImg();
 middleImgIn=randomImg();
 rightImgIn=randomImg();
 
+<<<<<<< HEAD
 console.log(itterationArray)
 
 
@@ -53,10 +61,14 @@ switch(leftImgIn){
     // leftImgIn=randomImg();
     // case itterationArray[2]:
     // leftImgIn=randomImg();       
+=======
+switch(leftImgIn){
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
     case middleImgIn:
     leftImgIn=randomImg();
     case rightImgIn:
     leftImgIn=randomImg();
+<<<<<<< HEAD
     
 }
 // itterationArray.push(leftImgIn);
@@ -69,6 +81,13 @@ switch(middleImgIn){
     // middleImgIn=randomImg();
     // case itterationArray[2]:
     // middleImgIn=randomImg(); 
+=======
+
+
+}
+
+switch(middleImgIn){
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
     case leftImgIn:
     middleImgIn=randomImg();
     case rightImgIn:
@@ -76,6 +95,7 @@ switch(middleImgIn){
 
 
 }
+<<<<<<< HEAD
 // itterationArray.push(middleImgIn);
 itterationArray[1]=middleImgIn;
 
@@ -86,6 +106,9 @@ switch(rightImgIn){
     // rightImgIn=randomImg();
     // case itterationArray[2]:
     // rightImgIn=randomImg(); 
+=======
+switch(rightImgIn){
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
     case leftImgIn:
     rightImgIn=randomImg();
     case middleImgIn:
@@ -93,11 +116,14 @@ switch(rightImgIn){
 
 
 }
+<<<<<<< HEAD
 // itterationArray.push(rightImgIn);
 itterationArray[2]=rightImgIn ;
 
 
 // 
+=======
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
 
 oneEl.setAttribute('src', busMall[leftImgIn].source)
 oneEl.setAttribute('title', busMall[leftImgIn].source);
@@ -111,6 +137,7 @@ threeEl.setAttribute('src', busMall[rightImgIn].source)
 threeEl.setAttribute('title', busMall[rightImgIn].source);
 busMall[rightImgIn].views++;
 }
+<<<<<<< HEAD
 renderImages();
 
 while( leftImgIn == middleImgIn && rightImgIn){
@@ -122,6 +149,10 @@ while( middleImgIn == leftImgIn && rightImgIn){
 while( rightImgIn == middleImgIn && leftImgIn){
     rightImgIn=randomImg();
 }
+=======
+
+renderImages();
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
 
 
 oneEl.addEventListener('click', handelClicks);
@@ -131,7 +162,11 @@ threeEl.addEventListener('click', handelClicks);
 function handelClicks(event){
     attempts++;
     if (attempts <= maxAttempts) {
+<<<<<<< HEAD
         // console.log(event.target.id)
+=======
+        console.log(event.target.id)
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
         if (event.target.id === 'leftImg') {
             busMall[leftImgIn].clicks++;
         } else if (event.target.id === 'middleImg') {
@@ -142,6 +177,7 @@ function handelClicks(event){
         }
         
         renderImages();
+<<<<<<< HEAD
         for(let i=0; i<itterationArray.length; i++){
          
 
@@ -170,6 +206,8 @@ function handelClicks(event){
 
 
 
+=======
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
     } else {
     
 let ulEl = document.getElementById('results');
@@ -184,9 +222,14 @@ buttonEl.addEventListener('click', results);
         for (let i = 0; i < busMall.length; i++) {
             liEl = document.createElement('li');
             ulEl.appendChild(liEl);
+<<<<<<< HEAD
             liEl.textContent = `${busMall[i].imgName} has ${busMall[i].views} views and has ${busMall[i].clicks} clicks.`
             c.push(busMall[i].clicks);
             v.push(busMall[i].views);}
+=======
+            liEl.textContent = `${busMall[i].imgName} has ${busMall[i].views} views and has ${busMall[i].clicks} clicks.`}
+        
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
     }
 
 
@@ -194,6 +237,7 @@ buttonEl.addEventListener('click', results);
         oneEl.removeEventListener('click', handelClicks);
         twoEl.removeEventListener('click', handelClicks);
         threeEl.removeEventListener('click', handelClicks);
+<<<<<<< HEAD
         chart();
     }
 
@@ -241,4 +285,9 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+=======
+    }
+
+
+>>>>>>> 6815aead334c413ac4811802921208f9368e6290
 }
