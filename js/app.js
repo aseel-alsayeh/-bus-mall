@@ -2,12 +2,10 @@
 let attempts=0;
 let maxAttempts =5;
 let busMall =[] ;
-
 let imgesName =[];
 let c = [];
 let v =[];
 let itterationArray =[];
-
 
 
 function BusMallImg (imgName) {
@@ -16,11 +14,7 @@ function BusMallImg (imgName) {
     this.clicks=0;
     this.views=0;
     busMall.push(this);
-
     imgesName.push(this.imgName)
-
-
-
 
 }
 
@@ -49,7 +43,6 @@ leftImgIn=randomImg();
 middleImgIn=randomImg();
 rightImgIn=randomImg();
 
-
 console.log(itterationArray)
 
 
@@ -60,14 +53,10 @@ switch(leftImgIn){
     // leftImgIn=randomImg();
     // case itterationArray[2]:
     // leftImgIn=randomImg();       
-
-switch(leftImgIn){
-
     case middleImgIn:
     leftImgIn=randomImg();
     case rightImgIn:
     leftImgIn=randomImg();
-
     
 }
 // itterationArray.push(leftImgIn);
@@ -80,13 +69,6 @@ switch(middleImgIn){
     // middleImgIn=randomImg();
     // case itterationArray[2]:
     // middleImgIn=randomImg(); 
-
-
-
-}
-
-switch(middleImgIn){
-
     case leftImgIn:
     middleImgIn=randomImg();
     case rightImgIn:
@@ -94,7 +76,6 @@ switch(middleImgIn){
 
 
 }
-
 // itterationArray.push(middleImgIn);
 itterationArray[1]=middleImgIn;
 
@@ -105,9 +86,6 @@ switch(rightImgIn){
     // rightImgIn=randomImg();
     // case itterationArray[2]:
     // rightImgIn=randomImg(); 
-
-switch(rightImgIn){
-
     case leftImgIn:
     rightImgIn=randomImg();
     case middleImgIn:
@@ -115,11 +93,11 @@ switch(rightImgIn){
 
 
 }
-
 // itterationArray.push(rightImgIn);
 itterationArray[2]=rightImgIn ;
 
 
+// 
 
 
 // 
@@ -135,7 +113,6 @@ threeEl.setAttribute('src', busMall[rightImgIn].source)
 threeEl.setAttribute('title', busMall[rightImgIn].source);
 busMall[rightImgIn].views++;
 }
-
 renderImages();
 
 while( leftImgIn == middleImgIn && rightImgIn){
@@ -149,10 +126,6 @@ while( rightImgIn == middleImgIn && leftImgIn){
 }
 
 
-renderImages();
-
-
-
 oneEl.addEventListener('click', handelClicks);
 twoEl.addEventListener('click', handelClicks);
 threeEl.addEventListener('click', handelClicks);
@@ -160,11 +133,7 @@ threeEl.addEventListener('click', handelClicks);
 function handelClicks(event){
     attempts++;
     if (attempts <= maxAttempts) {
-
         // console.log(event.target.id)
-
-        console.log(event.target.id)
-
         if (event.target.id === 'leftImg') {
             busMall[leftImgIn].clicks++;
         } else if (event.target.id === 'middleImg') {
@@ -175,7 +144,6 @@ function handelClicks(event){
         }
         
         renderImages();
-
         for(let i=0; i<itterationArray.length; i++){
          
 
@@ -204,7 +172,6 @@ function handelClicks(event){
 
 
 
-
     } else {
     
 let ulEl = document.getElementById('results');
@@ -219,14 +186,9 @@ buttonEl.addEventListener('click', results);
         for (let i = 0; i < busMall.length; i++) {
             liEl = document.createElement('li');
             ulEl.appendChild(liEl);
-
             liEl.textContent = `${busMall[i].imgName} has ${busMall[i].views} views and has ${busMall[i].clicks} clicks.`
             c.push(busMall[i].clicks);
             v.push(busMall[i].views);}
-
-            liEl.textContent = `${busMall[i].imgName} has ${busMall[i].views} views and has ${busMall[i].clicks} clicks.`}
-        
-
     }
 
 
@@ -234,7 +196,6 @@ buttonEl.addEventListener('click', results);
         oneEl.removeEventListener('click', handelClicks);
         twoEl.removeEventListener('click', handelClicks);
         threeEl.removeEventListener('click', handelClicks);
-
         chart();
     }
 
@@ -282,9 +243,4 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
-    }
-
-
-
 }
