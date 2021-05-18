@@ -1,12 +1,12 @@
 'use strict'
 let attempts=0;
-let maxAttempts =5;
+let maxAttempts =10;
 let busMall =[] ;
 let imgesName =[];
 let c = [];
 let v =[];
 let itterationArray =[];
-
+let storageArray=[];
 
 function BusMallImg (imgName) {
     this.imgName = imgName.split('.')[0];
@@ -15,8 +15,31 @@ function BusMallImg (imgName) {
     this.views=0;
     busMall.push(this);
     imgesName.push(this.imgName)
+    
+   
 
 }
+
+function settingItems(){
+    let data = JSON.stringify(busMall);
+    console.log(data)
+    localStorage.setItem('BusMallImg', data);
+    console.log(data)
+}
+
+function gettingItems(){
+    let stringObj = localStorage.getItem('BusMallImg');
+    let normalObj= JSON.parse(stringObj);
+     console.log(normalObj);
+    if (normalObj !== null){
+        busMall= normalObj;
+    }
+    
+    chart();
+    
+}
+
+
 
 let busMallImg = ['bag.jpg', 'banana.jpg', 'bathroom.jpg','boots.jpg','breakfast.jpg', 'bubblegum.jpg','chair.jpg','cthulhu.jpg','dog-duck.jpg','dragon.jpg','pen.jpg','pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','water-can.jpg','wine-glass.jpg']
 
@@ -112,8 +135,10 @@ busMall[middleImgIn].views++;
 threeEl.setAttribute('src', busMall[rightImgIn].source)
 threeEl.setAttribute('title', busMall[rightImgIn].source);
 busMall[rightImgIn].views++;
+
 }
 renderImages();
+
 
 while( leftImgIn == middleImgIn && rightImgIn){
     leftImgIn=randomImg();
@@ -143,55 +168,32 @@ function handelClicks(event){
             busMall[rightImgIn].clicks++;
         }
         
+        settingItems();
         renderImages();
-        for(let i=0; i<itterationArray.length; i++){
-         
 
-            switch(itterationArray[i]){
-                case leftImgIn:
-                    leftImgIn=randomImg();          
-            
-                case middleImgIn:
-                    middleImgIn=randomImg();
-                   
-            
-                case rightImgIn:
-                    rightImgIn=randomImg();          
-            
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
+        
+        
     } else {
     
-let ulEl = document.getElementById('results');
+        let ulEl = document.getElementById('results');
 
-let liEl;
-
-let buttonEl = document.getElementById('button');
-buttonEl.addEventListener('click', results);
-
-    function results(event){
-        event.preventDefault();
-        for (let i = 0; i < busMall.length; i++) {
-            liEl = document.createElement('li');
-            ulEl.appendChild(liEl);
-            liEl.textContent = `${busMall[i].imgName} has ${busMall[i].views} views and has ${busMall[i].clicks} clicks.`
-            c.push(busMall[i].clicks);
-            v.push(busMall[i].views);}
-    }
-
-
+        let liEl;
+        
+        let buttonEl = document.getElementById('button');
+        buttonEl.addEventListener('click', results);
+        
+        function results(event){
+            event.preventDefault();
+            for (let i = 0; i < busMall.length; i++) {
+                liEl = document.createElement('li');
+                ulEl.appendChild(liEl);
+                liEl.textContent = `${busMall[i].imgName} has ${busMall[i].views} views and has ${busMall[i].clicks} clicks.`
+                c.push(busMall[i].clicks);
+                v.push(busMall[i].views);}
+           
+            }
+            
+     
 
         oneEl.removeEventListener('click', handelClicks);
         twoEl.removeEventListener('click', handelClicks);
@@ -201,6 +203,7 @@ buttonEl.addEventListener('click', results);
 
 
 }
+
 
 
 function chart() {
@@ -244,3 +247,5 @@ var myChart = new Chart(ctx, {
     }
 });
 }
+// localStorage.clear()
+gettingItems();
