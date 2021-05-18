@@ -99,6 +99,8 @@ itterationArray[2]=rightImgIn ;
 
 // 
 
+
+// 
 oneEl.setAttribute('src', busMall[leftImgIn].source)
 oneEl.setAttribute('title', busMall[leftImgIn].source);
 busMall[leftImgIn].views++;
