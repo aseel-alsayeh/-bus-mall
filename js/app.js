@@ -3,12 +3,23 @@ let attempts=0;
 let maxAttempts =5;
 let busMall =[] ;
 
+let imgesName =[];
+let c = [];
+let v =[];
+let itterationArray =[];
+
+
+
 function BusMallImg (imgName) {
     this.imgName = imgName.split('.')[0];
     this.source='i/' + imgName;
     this.clicks=0;
     this.views=0;
     busMall.push(this);
+
+    imgesName.push(this.imgName)
+
+
 
 
 }
@@ -38,16 +49,44 @@ leftImgIn=randomImg();
 middleImgIn=randomImg();
 rightImgIn=randomImg();
 
+
+console.log(itterationArray)
+
+
 switch(leftImgIn){
+    // case itterationArray[0]:
+    // leftImgIn=randomImg();
+    //  case itterationArray[1]:
+    // leftImgIn=randomImg();
+    // case itterationArray[2]:
+    // leftImgIn=randomImg();       
+
+switch(leftImgIn){
+
     case middleImgIn:
     leftImgIn=randomImg();
     case rightImgIn:
     leftImgIn=randomImg();
+
+    
+}
+// itterationArray.push(leftImgIn);
+itterationArray[0]=leftImgIn;
+
+switch(middleImgIn){
+    // case itterationArray[0]:
+    // miidleImgIn=randomImg();
+    //  case itterationArray[1]:
+    // middleImgIn=randomImg();
+    // case itterationArray[2]:
+    // middleImgIn=randomImg(); 
+
 
 
 }
 
 switch(middleImgIn){
+
     case leftImgIn:
     middleImgIn=randomImg();
     case rightImgIn:
@@ -55,7 +94,20 @@ switch(middleImgIn){
 
 
 }
+
+// itterationArray.push(middleImgIn);
+itterationArray[1]=middleImgIn;
+
 switch(rightImgIn){
+    // case itterationArray[0]:
+    // rightImgIn=randomImg();
+    //  case itterationArray[1]:
+    // rightImgIn=randomImg();
+    // case itterationArray[2]:
+    // rightImgIn=randomImg(); 
+
+switch(rightImgIn){
+
     case leftImgIn:
     rightImgIn=randomImg();
     case middleImgIn:
@@ -64,6 +116,13 @@ switch(rightImgIn){
 
 }
 
+// itterationArray.push(rightImgIn);
+itterationArray[2]=rightImgIn ;
+
+
+
+
+// 
 oneEl.setAttribute('src', busMall[leftImgIn].source)
 oneEl.setAttribute('title', busMall[leftImgIn].source);
 busMall[leftImgIn].views++;
@@ -79,6 +138,20 @@ busMall[rightImgIn].views++;
 
 renderImages();
 
+while( leftImgIn == middleImgIn && rightImgIn){
+    leftImgIn=randomImg();
+}
+while( middleImgIn == leftImgIn && rightImgIn){
+    middleImgIn=randomImg();
+}
+while( rightImgIn == middleImgIn && leftImgIn){
+    rightImgIn=randomImg();
+}
+
+
+renderImages();
+
+
 
 oneEl.addEventListener('click', handelClicks);
 twoEl.addEventListener('click', handelClicks);
@@ -87,7 +160,11 @@ threeEl.addEventListener('click', handelClicks);
 function handelClicks(event){
     attempts++;
     if (attempts <= maxAttempts) {
+
+        // console.log(event.target.id)
+
         console.log(event.target.id)
+
         if (event.target.id === 'leftImg') {
             busMall[leftImgIn].clicks++;
         } else if (event.target.id === 'middleImg') {
@@ -98,6 +175,36 @@ function handelClicks(event){
         }
         
         renderImages();
+
+        for(let i=0; i<itterationArray.length; i++){
+         
+
+            switch(itterationArray[i]){
+                case leftImgIn:
+                    leftImgIn=randomImg();          
+            
+                case middleImgIn:
+                    middleImgIn=randomImg();
+                   
+            
+                case rightImgIn:
+                    rightImgIn=randomImg();          
+            
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     } else {
     
 let ulEl = document.getElementById('results');
@@ -112,8 +219,14 @@ buttonEl.addEventListener('click', results);
         for (let i = 0; i < busMall.length; i++) {
             liEl = document.createElement('li');
             ulEl.appendChild(liEl);
+
+            liEl.textContent = `${busMall[i].imgName} has ${busMall[i].views} views and has ${busMall[i].clicks} clicks.`
+            c.push(busMall[i].clicks);
+            v.push(busMall[i].views);}
+
             liEl.textContent = `${busMall[i].imgName} has ${busMall[i].views} views and has ${busMall[i].clicks} clicks.`}
         
+
     }
 
 
@@ -121,7 +234,57 @@ buttonEl.addEventListener('click', results);
         oneEl.removeEventListener('click', handelClicks);
         twoEl.removeEventListener('click', handelClicks);
         threeEl.removeEventListener('click', handelClicks);
+
+        chart();
     }
+
+
+}
+
+
+function chart() {
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: imgesName,
+        datasets: [ {
+            label: '# of Votes',
+            data: c,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                
+            ],
+            borderWidth: 1
+        
+    },{
+    label: '# of view',
+    data: v,
+    backgroundColor: [
+        'rgba(75, 192, 192, 0.2)',
+        
+    ],
+    borderColor: [
+        'rgba(75, 192, 192, 0.2)',        
+    ],
+    borderWidth: 1
+}]
+},
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+    }
+
 
 
 }
