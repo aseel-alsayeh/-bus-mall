@@ -1,9 +1,65 @@
+body{
+    box-sizing: border-box;
+    width:60%;
+    background-color:rgb(247, 240, 240);
+}
+
+
 img {
     width: 200px;
     height: 150px;
 
 }
-#myChart {
-    width:500px;
-    height: 300px;
+
+
+
+.h1{
+    text-align: center;
+    font-size:30px;
+    height: 70px;
+   line-height: 70px;
+background-image: url(https://st2.depositphotos.com/3350865/6406/v/950/depositphotos_64066393-stock-illustration-abstract-background-of-light-red.jpg);}
+
+#left{
+    float:left;
+    border-right: 6px solid red
 }
+
+#con{
+    float: right;
+    margin-left: 30px;
+   
+}
+h2 {
+    font-size:150%;
+    color:  rgb(161, 4, 4);
+    background-color: rgb(201, 176, 176);
+    width: 30%;
+    margin-left: 60px;
+    margin-bottom: 30px;
+    border-bottom: 3px dashed red;
+    margin-top: 30px;
+}
+
+#right{
+    float:right;
+    width: 70%;
+
+}
+
+#button{
+    
+    width: 50px;
+    transform: scale(.75);
+
+
+}
+
+p{
+    display: inline-block;
+}
+
+img{
+    border: solid 3px red;
+}
+
